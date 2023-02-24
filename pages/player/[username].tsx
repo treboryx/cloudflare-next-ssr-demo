@@ -15,28 +15,35 @@ const Button = styled("button", {
   },
 });
 
-export default function Page({ data }: any) {
+export default function Page({ data }: { data: any }) {
   return (
     <>
-      <Head>
-        <title>{data.username}</title>
-        <link
-          rel="icon"
-          href={`https://skins.mcstats.com/face/${data.uuid}?size=16`}
-        />
-      </Head>
-      <div className="flex justify-center flex-col items-center">
-        <Image
-          width={316}
-          height={512}
-          src={`https://skins.mcstats.com/body/front/${data.uuid}`}
-          alt={`${data.username}'s Skin`}
-        />
-        <h1 className="text-4xl font-bold">{data.username}</h1>
-        <a href={`https://crafty.gg/players/${data.username}`} target="_blank">
-          <Button>View more</Button>
-        </a>
-      </div>
+      {data.username ? (
+        <>
+          <Head>
+            <title>{data.username}</title>
+            <link
+              rel="icon"
+              href={`https://skins.mcstats.com/face/${data.uuid}?size=16`}
+            />
+          </Head>
+          <div className="flex justify-center flex-col items-center">
+            <Image
+              width={316}
+              height={512}
+              src={`https://skins.mcstats.com/body/front/${data.uuid}`}
+              alt={`${data.username}'s Skin`}
+            />
+            <h1 className="text-4xl font-bold">{data.username}</h1>
+            <a
+              href={`https://crafty.gg/players/${data.username}`}
+              target="_blank"
+            >
+              <Button>View more</Button>
+            </a>
+          </div>
+        </>
+      ) : null}
     </>
   );
 }
