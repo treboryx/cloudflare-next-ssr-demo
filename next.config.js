@@ -4,4 +4,13 @@ module.exports = {
   experimental: {
     runtime: "edge",
   },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "skins.mcstats.com",
+      },
+    ],
+  },
 };
