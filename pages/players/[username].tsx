@@ -48,17 +48,20 @@ export default function Page({ data }: { data: any }) {
   );
 }
 
+export const config = {
+  runtime: "experimental-edge",
+};
+
 export async function getServerSideProps({
   params,
 }: {
   params: { username: string };
 }) {
-  const data = await fetch(
-    `https://mc-api.com/v1/players/${params.username}`
-  ).then((r) => r.json());
-  return { props: { data } };
+  return {
+    props: {
+      data: await fetch(
+        `https://mc-api.com/v1/players/${params.username}`
+      ).then((r) => r.json()),
+    },
+  };
 }
-
-export const config = {
-  runtime: "experimental-edge",
-};
