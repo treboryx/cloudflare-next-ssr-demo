@@ -51,3 +51,7 @@ export async function getServerSideProps({
   ).then((r) => r.json());
   return { props: { data } };
 }
+
+export const config = {
+  runtime: "experimental-edge",
+};
