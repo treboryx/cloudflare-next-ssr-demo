@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import { styled } from "@stitches/react";
+import { NextPage } from "next";
 
 const Button = styled("button", {
   backgroundColor: "#10b981",
@@ -15,7 +16,7 @@ const Button = styled("button", {
   },
 });
 
-export default function Page({ data }: { data: any }) {
+const Page: NextPage<{ data: any }> = ({ data }) => {
   return (
     <>
       {data.username ? (
@@ -46,7 +47,7 @@ export default function Page({ data }: { data: any }) {
       ) : null}
     </>
   );
-}
+};
 
 export const config = {
   runtime: "experimental-edge",
@@ -65,3 +66,5 @@ export async function getServerSideProps({
     },
   };
 }
+
+export default Page;
