@@ -1,5 +1,19 @@
 import Image from "next/image";
 import Head from "next/head";
+import { styled } from "@stitches/react";
+
+const Button = styled("button", {
+  backgroundColor: "#10b981",
+  borderRadius: "9999px",
+  fontSize: "13px",
+  color: "black",
+  fontWeight: "bold",
+  padding: "10px 15px",
+  transition: "background-color 0.2s ease-in-out",
+  "&:hover": {
+    backgroundColor: "#12d695",
+  },
+});
 
 export default function Page({ data }: any) {
   return (
@@ -19,6 +33,9 @@ export default function Page({ data }: any) {
           alt={`${data.username}'s Skin`}
         />
         <h1 className="text-4xl font-bold">{data.username}</h1>
+        <a href={`https://crafty.gg/players/${data.username}`} target="_blank">
+          <Button>View more</Button>
+        </a>
       </div>
     </>
   );
