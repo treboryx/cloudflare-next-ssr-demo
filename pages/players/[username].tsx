@@ -49,10 +49,6 @@ const Page: NextPage<{ data: any }> = ({ data }) => {
   );
 };
 
-export const config = {
-  runtime: "experimental-edge",
-};
-
 export async function getServerSideProps({
   params,
 }: {
