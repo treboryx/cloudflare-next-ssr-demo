@@ -16,10 +16,27 @@ const Button = styled("button", {
   },
 });
 
-const Page: NextPage<{ data: any }> = ({ data }) => {
+export async function getServerSideProps({ params }: any) {
+  return {
+    props: {
+      runtime: process.env.NEXT_RUNTIME,
+      data: await fetch(
+        `https://mc-api.com/v1/players/${params.username}`
+      ).then((r) => r.json()),
+      text: await fetch(
+        `https://mc-api.com/v1/players/${params.username}`
+      ).then((r) => r.text()),
+    },
+  };
+}
+
+// @ts-ignore
+const Page: NextPage = ({ data, text }) => {
   return (
     <>
-      {data.username ? (
+      <div>{JSON.stringify(data)}</div>
+      <div>{text}</div>
+      {/* {data.username ? (
         <>
           <Head>
             <title>{data.username}</title>
@@ -29,12 +46,6 @@ const Page: NextPage<{ data: any }> = ({ data }) => {
             />
           </Head>
           <div className="flex justify-center flex-col items-center">
-            {/* <Image
-              width={316}
-              height={512}
-              src={`https://skins.mcstats.com/body/front/${data.uuid}`}
-              alt={`${data.username}'s Skin`}
-            /> */}
             <h1 className="text-4xl font-bold">{data.username}</h1>
             <a
               href={`https://crafty.gg/players/${data.username}`}
@@ -44,24 +55,9 @@ const Page: NextPage<{ data: any }> = ({ data }) => {
             </a>
           </div>
         </>
-      ) : null}
+      ) : null} */}
     </>
   );
 };
-
-export async function getServerSideProps({
-  params,
-}: {
-  params: { username: string };
-}) {
-  return {
-    props: {
-      runtime: process.env.NEXT_RUNTIME,
-      data: await fetch(
-        `https://mc-api.com/v1/players/${params.username}`
-      ).then((r) => r.json()),
-    },
-  };
-}
 
 export default Page;
