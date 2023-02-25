@@ -2,6 +2,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { styled } from "@stitches/react";
 import { NextPage, NextPageContext } from "next";
+import { parsePath } from "../../utils";
 
 const Button = styled("button", {
   backgroundColor: "#10b981",
@@ -17,7 +18,7 @@ const Button = styled("button", {
 });
 
 export async function getServerSideProps(ctx: NextPageContext) {
-  const { username } = ctx.query;
+  const { username } = parsePath("/players/:username", ctx);
   return {
     props: {
       runtime: process.env.NEXT_RUNTIME,
