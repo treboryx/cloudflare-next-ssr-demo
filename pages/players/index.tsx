@@ -5,13 +5,13 @@ export default function Players() {
     <>
       <ul>
         <li>
-          <Link href="/player/Notch">Notch</Link>
+          <Link href="/players/Notch">Notch</Link>
         </li>
         <li>
-          <Link href="/player/R0berto">R0berto</Link>
+          <Link href="/players/R0berto">R0berto</Link>
         </li>
         <li>
-          <Link href="/player/TheBroJordan">TheBroJordan</Link>
+          <Link href="/players/TheBroJordan">TheBroJordan</Link>
         </li>
       </ul>
     </>
