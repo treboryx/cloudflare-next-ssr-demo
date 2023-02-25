@@ -56,6 +56,7 @@ export async function getServerSideProps({
 }) {
   return {
     props: {
+      runtime: process.env.NEXT_RUNTIME,
       data: await fetch(
         `https://mc-api.com/v1/players/${params.username}`
       ).then((r) => r.json()),
