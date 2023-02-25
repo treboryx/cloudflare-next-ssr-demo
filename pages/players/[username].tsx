@@ -29,10 +29,9 @@ export async function getServerSideProps(ctx: NextPageContext) {
 }
 
 // @ts-ignore
-const Page: NextPage = ({ data, text }) => {
+const Page: NextPage = ({ data }) => {
   return (
     <>
-      <div>{JSON.stringify(data)}</div>
       {data.username ? (
         <>
           <Head>
@@ -43,7 +42,7 @@ const Page: NextPage = ({ data, text }) => {
             />
           </Head>
           <div className="flex justify-center flex-col items-center">
-            <Image
+            <img
               width={316}
               height={512}
               src={`https://skins.mcstats.com/body/front/${data.uuid}`}
