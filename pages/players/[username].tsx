@@ -29,12 +29,12 @@ const Page: NextPage<{ data: any }> = ({ data }) => {
             />
           </Head>
           <div className="flex justify-center flex-col items-center">
-            <Image
+            {/* <Image
               width={316}
               height={512}
               src={`https://skins.mcstats.com/body/front/${data.uuid}`}
               alt={`${data.username}'s Skin`}
-            />
+            /> */}
             <h1 className="text-4xl font-bold">{data.username}</h1>
             <a
               href={`https://crafty.gg/players/${data.username}`}
