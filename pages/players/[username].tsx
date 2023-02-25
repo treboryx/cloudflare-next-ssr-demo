@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import { styled } from "@stitches/react";
-import { NextPage } from "next";
+import { NextPage, NextPageContext } from "next";
 
 const Button = styled("button", {
   backgroundColor: "#10b981",
@@ -16,16 +16,14 @@ const Button = styled("button", {
   },
 });
 
-export async function getServerSideProps({ params }: any) {
+export async function getServerSideProps(ctx: NextPageContext) {
+  const { username } = ctx.query;
   return {
     props: {
       runtime: process.env.NEXT_RUNTIME,
-      data: await fetch(
-        `https://mc-api.com/v1/players/${params.username}`
-      ).then((r) => r.json()),
-      text: await fetch(
-        `https://mc-api.com/v1/players/${params.username}`
-      ).then((r) => r.text()),
+      data: await fetch(`https://mc-api.com/v1/players/${username}`).then((r) =>
+        r.json()
+      ),
     },
   };
 }
@@ -35,7 +33,6 @@ const Page: NextPage = ({ data, text }) => {
   return (
     <>
       <div>{JSON.stringify(data)}</div>
-      <div>{text}</div>
       {/* {data.username ? (
         <>
           <Head>
