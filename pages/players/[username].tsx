@@ -21,7 +21,6 @@ export async function getServerSideProps(ctx: NextPageContext) {
   const { username } = parsePath("/players/:username", ctx);
   return {
     props: {
-      runtime: process.env.NEXT_RUNTIME,
       data: await fetch(`https://mc-api.com/v1/players/${username}`).then((r) =>
         r.json()
       ),
@@ -34,7 +33,7 @@ const Page: NextPage = ({ data, text }) => {
   return (
     <>
       <div>{JSON.stringify(data)}</div>
-      {/* {data.username ? (
+      {data.username ? (
         <>
           <Head>
             <title>{data.username}</title>
@@ -44,7 +43,14 @@ const Page: NextPage = ({ data, text }) => {
             />
           </Head>
           <div className="flex justify-center flex-col items-center">
+            <Image
+              width={316}
+              height={512}
+              src={`https://skins.mcstats.com/body/front/${data.uuid}`}
+              alt={`${data.username}'s Skin`}
+            />
             <h1 className="text-4xl font-bold">{data.username}</h1>
+            <h2 className="text-4xl font-bold">{data.uuid}</h2>
             <a
               href={`https://crafty.gg/players/${data.username}`}
               target="_blank"
@@ -53,7 +59,7 @@ const Page: NextPage = ({ data, text }) => {
             </a>
           </div>
         </>
-      ) : null} */}
+      ) : null}
     </>
   );
 };
