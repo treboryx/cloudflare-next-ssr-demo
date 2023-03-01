@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Head from "next/head";
-import { styled } from "@stitches/react";
+import { styled } from "../../stitches.config";
 import { NextPage, NextPageContext } from "next";
 import { parsePath } from "../../utils";
 
